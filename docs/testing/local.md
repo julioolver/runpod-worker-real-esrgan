@@ -13,6 +13,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
+## Start the local server
+
+```bash
+python3 -u handler.py --rp_serve_api --rp_api_port 8000 --rp_api_host 0.0.0.0
+````
+
 ## Remove credentials from .env
 
 If you have added your `RUNPOD_API_KEY` and
