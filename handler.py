@@ -15,9 +15,10 @@ from realesrgan import RealESRGANer
 from PIL import Image
 from schemas.input import INPUT_SCHEMA
 
-pod_id = os.getenv('RUNPOD_POD_ID')
-
-if pod_id:
+# Use /workspace for the Docker volume mount path
+# otherwise use the current working directory
+worker_build_env = os.getenv('WORKER_BUILD_ENV')
+if worker_build_env:
     VOLUME_PATH = '/workspace'
 else:
     VOLUME_PATH = os.getcwd()
