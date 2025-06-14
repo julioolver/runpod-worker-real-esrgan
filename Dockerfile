@@ -59,6 +59,7 @@ RUN pip3 install --no-cache-dir torch==2.6.0+cu124 torchvision torchaudio --inde
 # 5. Run test inference using handler.py to cache the models
 RUN git clone https://github.com/ashleykleynhans/runpod-worker-real-esrgan.git && \
     cd runpod-worker-real-esrgan && \
+    pip3 install git+https://github.com/XPixelGroup/BasicSR.git && \
     pip3 install -r requirements.txt && \
     python3 setup.py develop && \
     python3 create_test_json.py && \

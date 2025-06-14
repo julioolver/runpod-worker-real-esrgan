@@ -15,8 +15,14 @@ from realesrgan import RealESRGANer
 from PIL import Image
 from schemas.input import INPUT_SCHEMA
 
+pod_id = os.getenv('RUNPOD_POD_ID')
+
+if pod_id:
+    VOLUME_PATH = '/workspace'
+else:
+    VOLUME_PATH = os.getcwd()
+
 GPU_ID = 0
-VOLUME_PATH = '/workspace'
 TMP_PATH = f'{VOLUME_PATH}/tmp'
 MODELS_PATH = f'{VOLUME_PATH}/models/ESRGAN'
 GFPGAN_MODEL_PATH = f'{VOLUME_PATH}/models/GFPGAN/GFPGANv1.3.pth'

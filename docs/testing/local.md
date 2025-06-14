@@ -13,7 +13,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Start the local server
+## Start the local server in a terminal
 
 ```bash
 python3 -u handler.py --rp_serve_api --rp_api_port 8000 --rp_api_host 0.0.0.0
