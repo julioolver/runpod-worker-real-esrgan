@@ -20,10 +20,7 @@ The following models are available by default:
 
 ## Building the Docker image that will be used by the Serverless Worker
 
-There are two options:
-
-1. [Network Volume](docs/building/with-network-volume.md)
-2. [Standalone](docs/building/without-network-volume.md) (without Network Volume)
+1. [Building the Image](docs/building.md) 
 
 ## API
 
@@ -42,7 +39,7 @@ The worker provides an API for inference. The API payload looks like this:
 
 ## Serverless Handler
 
-The serverless handler (`rp_handler.py`) is a Python script that handles
+The serverless handler (`handler.py`) is a Python script that handles
 inference requests.  It defines a function handler(event) that takes an
 inference request, runs the inference using the Real-ESRGAN model, and
 returns the output as a JSON response in the following format:

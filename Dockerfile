@@ -1,4 +1,4 @@
-FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu22.04
+FROM nvidia/cuda:12.4.1-cudnn-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_PREFER_BINARY=1 \
@@ -50,23 +50,23 @@ RUN mkdir -p /workspace/models/ESRGAN && \
     wget -O /workspace/models/GFPGAN/GFPGANv1.3.pth https://github.com/TencentARC/GFPGAN/releases/download/v1.3.0/GFPGANv1.3.pth
 
 # Install Torch
-RUN pip3 install --no-cache-dir torch==2.0.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+RUN pip3 install --no-cache-dir torch==2.6.0+cu124 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
 
 # 1. Clone the worker repo
 # 2. Install requirements
 # 3. Setup the local requirements
 # 4. Create test_input.json file for test inference
-# 5. Run test inference using rp_handler.py to cache the models
+# 5. Run test inference using handler.py to cache the models
 RUN git clone https://github.com/ashleykleynhans/runpod-worker-real-esrgan.git && \
     cd runpod-worker-real-esrgan && \
     pip3 install -r requirements.txt && \
     python3 setup.py develop && \
     python3 create_test_json.py && \
-    python3 -u rp_handler.py
+    python3 -u handler.py
 
 # Docker container start script
 ADD start_standalone.sh /start.sh
-ADD rp_handler.py /workspace/runpod-worker-real-esrgan/rp_handler.py
+ADD handler.py /workspace/runpod-worker-real-esrgan/handler.py
 
 # Start the container
 RUN chmod +x /start.sh
